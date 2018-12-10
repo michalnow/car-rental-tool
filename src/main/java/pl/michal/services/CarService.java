@@ -37,17 +37,16 @@ public class CarService {
 					"Car idenetifier" + car.getCarIdentifier().toUpperCase() + " already exist");
 		}
 	}
-	
+
 	public void deleteCarByIdentifier(String carIdentifier) {
 		Car car = carRepository.findAllByCarIdentifier(carIdentifier);
-		
-		if(car == null) {
-			throw new CarIdentifierException("Cannot delete car with " + carIdentifier + " identifier, because it does not exist");
+
+		if (car == null) {
+			throw new CarIdentifierException(
+					"Cannot delete car with " + carIdentifier + " identifier, because it does not exist");
 		}
-		
+
 		carRepository.delete(car);
 	}
-	
-	
 
 }

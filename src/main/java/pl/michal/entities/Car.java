@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -41,10 +43,10 @@ public class Car {
 	@NotBlank(message="must proivde type of transmission")
 	private String transmission;
 	
-	@NotBlank(message="must provide milage of car")
+	@NotNull(message="must provide milage of car")
 	private int milage;
 	
-	@NotBlank(message="must provide year of production")
+	@NotNull(message="must provide year of production")
 	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date yearOfProduction;
 	
@@ -54,6 +56,8 @@ public class Car {
 	public Long getId() {
 		return id;
 	}
+	
+	public Car() {}
 
 	public void setId(Long id) {
 		this.id = id;
@@ -137,6 +141,11 @@ public class Car {
 
 	public void setAddDate(Date addDate) {
 		this.addDate = addDate;
+	}
+	
+	@PrePersist
+	protected void onCreate() {
+		this.addDate = new Date();
 	}
 	
 	
