@@ -1,4 +1,4 @@
-package pl.michal.controllers;
+package pl.michal.carcatalog;
 
 import javax.validation.Valid;
 
@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pl.michal.entities.Car;
-import pl.michal.services.CarService;
+
 import pl.michal.services.MapValidationErrorService;
 
 @RestController

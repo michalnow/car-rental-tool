@@ -1,11 +1,11 @@
-package pl.michal.services;
+package pl.michal.carcatalog;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.michal.entities.Car;
+
 import pl.michal.exceptions.CarIdentifierException;
-import pl.michal.repositories.CarRepository;
+
 
 @Service
 public class CarService {
@@ -48,5 +48,7 @@ public class CarService {
 
 		carRepository.delete(car);
 	}
+	
+	
 
 }

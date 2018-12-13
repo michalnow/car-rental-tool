@@ -1,9 +1,8 @@
-package pl.michal.repositories;
+package pl.michal.carcatalog;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import pl.michal.entities.Car;
 
 @Repository
 public interface CarRepository extends CrudRepository<Car, Long> {

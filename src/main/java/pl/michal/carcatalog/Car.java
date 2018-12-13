@@ -1,4 +1,4 @@
-package pl.michal.entities;
+package pl.michal.carcatalog;
 
 import java.util.Date;
 
@@ -52,12 +52,36 @@ public class Car {
 	
 	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date addDate;
+	
+	public Car(Long id, @NotBlank(message = "car name must be provided") String carName,
+			@NotBlank(message = "car model must be provided") String carModel,
+			@NotBlank(message = "must provide register number(8 characters)") @Size(min = 8, max = 8) String carIdentifier,
+			@NotBlank(message = "provide enginge type") String engineType,
+			@NotBlank(message = "must provide  fuel type") String fuelType,
+			@NotBlank(message = "must provide type of drive") String typeOfDrive,
+			@NotBlank(message = "must proivde type of transmission") String transmission,
+			@NotNull(message = "must provide milage of car") int milage,
+			@NotNull(message = "must provide year of production") Date yearOfProduction, Date addDate) {
+		this.id = id;
+		this.carName = carName;
+		this.carModel = carModel;
+		this.carIdentifier = carIdentifier;
+		this.engineType = engineType;
+		this.fuelType = fuelType;
+		this.typeOfDrive = typeOfDrive;
+		this.transmission = transmission;
+		this.milage = milage;
+		this.yearOfProduction = yearOfProduction;
+		this.addDate = addDate;
+	}
 
+	public Car() {}
+	
 	public Long getId() {
 		return id;
 	}
 	
-	public Car() {}
+	
 
 	public void setId(Long id) {
 		this.id = id;
