@@ -13,6 +13,7 @@ export default class Header extends Component {
         <a className="navbar-brand" href="#">
           Car rental
         </a>
+
         <button
           className="navbar-toggler"
           type="button"
