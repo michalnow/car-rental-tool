@@ -23,20 +23,21 @@ export default class Header extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
+          bbbcvbcv
           <span className="navbar-toggler-icon" />
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <a className="nav-item nav-link" href="#">
+            <link className="nav-item nav-link" href="#">
               Home
-            </a>
-            <a className="nav-item nav-link" href="#">
+            </link>
+            <link className="nav-item nav-link" href="#">
               Cars
-            </a>
-            <a className="nav-item nav-link" href="#">
+            </link>
+            <link className="nav-item nav-link" href="#">
               Pricing
-            </a>
+            </link>
           </div>
         </div>
       </nav>
