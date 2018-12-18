@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Header extends Component {
   render() {
@@ -10,9 +11,9 @@ export default class Header extends Component {
           display: "flex"
         }}
       >
-        <a className="navbar-brand" href="#">
+        <Link to="/cars" className="navbar-brand">
           Car rental
-        </a>
+        </Link>
 
         <button
           className="navbar-toggler"
@@ -23,21 +24,20 @@ export default class Header extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          bbbcvbcv
           <span className="navbar-toggler-icon" />
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <link className="nav-item nav-link" href="#">
+            <a className="nav-item nav-link" href="#">
               Home
-            </link>
-            <link className="nav-item nav-link" href="#">
+            </a>
+            <Link to="/cars" className="nav-item nav-link" href="#">
               Cars
-            </link>
-            <link className="nav-item nav-link" href="#">
+            </Link>
+            <a className="nav-item nav-link" href="#">
               Pricing
-            </link>
+            </a>
           </div>
         </div>
       </nav>

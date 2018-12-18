@@ -45,6 +45,8 @@ public class Car {
 	
 	@NotNull(message="must provide milage of car")
 	private int milage;
+
+	private double rating;
 	
 	@NotNull(message="must provide year of production")
 	@JsonFormat(pattern = "yyyy-mm-dd")
@@ -52,7 +54,7 @@ public class Car {
 	
 	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date addDate;
-	
+
 	public Car(Long id, @NotBlank(message = "car name must be provided") String carName,
 			@NotBlank(message = "car model must be provided") String carModel,
 			@NotBlank(message = "must provide register number(8 characters)") @Size(min = 8, max = 8) String carIdentifier,
@@ -80,7 +82,7 @@ public class Car {
 	public Long getId() {
 		return id;
 	}
-	
+
 	
 
 	public void setId(Long id) {
@@ -166,7 +168,15 @@ public class Car {
 	public void setAddDate(Date addDate) {
 		this.addDate = addDate;
 	}
-	
+
+	public double getRating() {
+		return rating;
+	}
+
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
+
 	@PrePersist
 	protected void onCreate() {
 		this.addDate = new Date();
