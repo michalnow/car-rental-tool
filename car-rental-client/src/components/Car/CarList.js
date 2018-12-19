@@ -20,31 +20,27 @@ export default class CarList extends Component {
     return (
       <div className="d-flex">
         <ul className="list-group mx-auto list-group-flush">
-          <li className="list-group-item d-flex justify-content-between align-items-center">
-            <h3>
-              gfdgf &nbsp; &nbsp; &nbsp; &nbsp;
-              <span class="badge badge-warning badge-pill">
-                rating 8.0 / 10
-              </span>
-            </h3>
-          </li>
-          <li className="list-group-item d-flex justify-content-between align-items-center">
-            <h3>
-              gfdgf &nbsp; &nbsp; &nbsp; &nbsp;
-              <span class="badge badge-warning badge-pill">
-                rating 8.0 / 10
-              </span>
-            </h3>
-          </li>
           {this.state.cars.map(car => (
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <h3>
-                {car.carName} &nbsp; {car.carModel} &nbsp; {car.engineType}
-                <span class="badge badge-warning badge-pill">
-                  rating {car.rating} / 10
-                </span>
-              </h3>
-            </li>
+            <div className="container">
+              <div className="row">
+                <div className="col-sm">
+                  <li className="list-group-item d-flex justify-content-between align-items-center">
+                    <h3>
+                      {car.carName}&nbsp;{car.carModel}&nbsp;{car.engineType}
+                    </h3>
+                  </li>
+                </div>
+                <div className="col-sm">
+                  <li className="list-group-item d-flex justify-content-between align-items-center">
+                    <h3>
+                      <span className="badge badge-warning badge-pill">
+                        rating {car.rating} / 10
+                      </span>
+                    </h3>
+                  </li>
+                </div>
+              </div>
+            </div>
           ))}
         </ul>
       </div>

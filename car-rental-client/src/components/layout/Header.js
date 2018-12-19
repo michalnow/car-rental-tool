@@ -29,9 +29,9 @@ export default class Header extends Component {
 
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <a className="nav-item nav-link" href="#">
+            <Link to="/" className="nav-item nav-link">
               Home
-            </a>
+            </Link>
             <Link to="/cars" className="nav-item nav-link" href="#">
               Cars
             </Link>
