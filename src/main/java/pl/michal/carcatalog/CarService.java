@@ -34,7 +34,7 @@ public class CarService {
 			return carRepository.save(car);
 		} catch (Exception ex) {
 			throw new CarIdentifierException(
-					"Car idenetifier" + car.getCarIdentifier().toUpperCase() + " already exist");
+					"Car idenetifier " + car.getCarIdentifier().toUpperCase() + " already exist");
 		}
 	}
 

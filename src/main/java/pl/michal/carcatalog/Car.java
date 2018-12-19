@@ -64,9 +64,12 @@ public class Car {
 			@NotBlank(message = "must provide  fuel type") String fuelType,
 			@NotBlank(message = "must provide type of drive") String typeOfDrive,
 			@NotBlank(message = "must proivde type of transmission") String transmission,
-			@NotNull(message = "must provide milage of car") int milage, double rating,
+			@NotNull(message = "must provide milage of car") int milage,
+			double rating,
 			@NotNull(message = "must provide year of production") Date yearOfProduction,
-			Date addDate) {
+			Date addDate
+			)
+	{
 		this.carName = carName;
 		this.carModel = carModel;
 		this.carIdentifier = carIdentifier;
