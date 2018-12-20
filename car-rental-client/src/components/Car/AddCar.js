@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import qs from "qs";
 
 export default class AddCar extends Component {
   constructor() {
@@ -74,10 +75,24 @@ export default class AddCar extends Component {
       yearOfProduction: this.state.yearOfProduction
     };
 
-    axios.post(`http://localhost:8080/api/car`, { car }).then(res => {
-      console.log(res);
-      console.log(res.data);
-    });
+    console.log(car);
+
+    axios({
+      headers: {
+        "Content-Type": "application/json; charset=utf8"
+      },
+      method: "POST",
+      url: `http://localhost:8080/api/car`,
+      data: car
+    })
+      .then(res => {
+        console.log(car);
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
     this.props.history.push("/cars");
   };
 
@@ -87,7 +102,7 @@ export default class AddCar extends Component {
         <div className="row">
           <div className="col-sm" />
           <div className="col-sm">
-            <form onSubmit={this.handleSubmit.bind(this)}>
+            <form onSubmit={this.handleSubmit}>
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label htmlFor="brand">Car brand</label>

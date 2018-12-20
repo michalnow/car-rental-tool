@@ -20,8 +20,8 @@ export default class CarList extends Component {
     return (
       <div className="d-flex">
         <ul className="list-group mx-auto list-group-flush">
-          {this.state.cars.map(car => (
-            <div className="container">
+          {this.state.cars.map((car, i) => (
+            <div className="container" key={i}>
               <div className="row">
                 <div className="col-sm">
                   <li className="list-group-item d-flex justify-content-between align-items-center">
