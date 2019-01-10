@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default class CarList extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class CarList extends Component {
     axios.get("http://localhost:8080/api/car/all").then(res => {
       const cars = res.data;
       this.setState({ cars });
+      console.log(cars);
     });
   }
 
@@ -26,7 +28,9 @@ export default class CarList extends Component {
                 <div className="col-sm">
                   <li className="list-group-item d-flex justify-content-between align-items-center">
                     <h3>
-                      {car.carName}&nbsp;{car.carModel}&nbsp;{car.engineType}
+                      <Link to={`/cars/details/${car.carIdentifier}`}>
+                        {car.carName}&nbsp;{car.carModel}&nbsp;{car.engineType}
+                      </Link>
                     </h3>
                   </li>
                 </div>
