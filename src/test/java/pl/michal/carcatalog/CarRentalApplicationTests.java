@@ -1,4 +1,4 @@
-package pl.michal;
+package pl.michal.carcatalog;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

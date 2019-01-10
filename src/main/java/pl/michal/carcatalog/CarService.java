@@ -19,7 +19,7 @@ public class CarService {
 
 	public Car findCarByIdentifier(String carIdentifier) {
 
-		Car car = carRepository.findAllByCarIdentifier(carIdentifier.toUpperCase());
+		Car car = carRepository.findByCarIdentifier(carIdentifier.toUpperCase());
 
 		if (car == null) {
 			throw new CarIdentifierException("Car with identifier " + carIdentifier.toUpperCase() + " does not exist");
@@ -39,7 +39,7 @@ public class CarService {
 	}
 
 	public void deleteCarByIdentifier(String carIdentifier) {
-		Car car = carRepository.findAllByCarIdentifier(carIdentifier);
+		Car car = carRepository.findByCarIdentifier(carIdentifier);
 
 		if (car == null) {
 			throw new CarIdentifierException(

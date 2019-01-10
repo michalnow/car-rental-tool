@@ -42,9 +42,9 @@ public class CarController {
 	
 	
 	@GetMapping("/{carIdentifier}")
-	public ResponseEntity<?> findCarByIdentifier(@PathVariable String carIdentifier) {
+	public Car findCarByIdentifier(@PathVariable String carIdentifier) {
 		Car car = carService.findCarByIdentifier(carIdentifier.toUpperCase());
-		return new ResponseEntity<Car>(car, HttpStatus.OK);
+		return car;
 	}
 	
 	@DeleteMapping("/{carIdentifier}")
