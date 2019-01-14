@@ -13,8 +13,16 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
 public class Car {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -84,104 +92,7 @@ public class Car {
 	}
 
 	public Car() {}
-	
-	public Long getId() {
-		return id;
-	}
 
-	
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getCarName() {
-		return carName;
-	}
-
-	public void setCarName(String carName) {
-		this.carName = carName;
-	}
-
-	public String getCarModel() {
-		return carModel;
-	}
-
-	public void setCarModel(String carModel) {
-		this.carModel = carModel;
-	}
-
-	public String getCarIdentifier() {
-		return carIdentifier;
-	}
-
-	public void setCarIdentifier(String carIdentifier) {
-		this.carIdentifier = carIdentifier;
-	}
-
-	public String getEngineType() {
-		return engineType;
-	}
-
-	public void setEngineType(String engineType) {
-		this.engineType = engineType;
-	}
-
-	public String getFuelType() {
-		return fuelType;
-	}
-
-	public void setFuelType(String fuelType) {
-		this.fuelType = fuelType;
-	}
-
-	public String getTypeOfDrive() {
-		return typeOfDrive;
-	}
-
-	public void setTypeOfDrive(String typeOfDrive) {
-		this.typeOfDrive = typeOfDrive;
-	}
-
-	public String getTransmission() {
-		return transmission;
-	}
-
-	public void setTransmission(String transmission) {
-		this.transmission = transmission;
-	}
-
-	public int getMilage() {
-		return milage;
-	}
-
-	public void setMilage(int milage) {
-		this.milage = milage;
-	}
-
-	public Date getYearOfProduction() {
-		return yearOfProduction;
-	}
-
-	public void setYearOfProduction(Date yearOfProduction) {
-		this.yearOfProduction = yearOfProduction;
-	}
-
-	public Date getAddDate() {
-		return addDate;
-	}
-
-	public void setAddDate(Date addDate) {
-		this.addDate = addDate;
-	}
-
-	public double getRating() {
-		return rating;
-	}
-
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
 
 	@PrePersist
 	protected void onCreate() {
