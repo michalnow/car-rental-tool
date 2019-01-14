@@ -8,24 +8,15 @@ export default class Header extends Component {
         className="navbar navbar-expand-lg navbar navbar-dark bg-dark"
         style={{
           alignItems: "center",
-          display: "flex"
+          display: "flex",
+          justifyContent: "center",
+          textAlign: "center",
+          float: "none"
         }}
       >
         <Link to="/cars" className="navbar-brand">
           Car rental
         </Link>
-
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
 
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">

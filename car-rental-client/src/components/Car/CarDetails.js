@@ -5,7 +5,10 @@ export default class CarDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      car: {}
+      car: {
+        carName:
+          "fdshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+      }
     };
     console.log(this.props.match.params);
   }
@@ -13,7 +16,7 @@ export default class CarDetails extends Component {
   componentDidMount() {
     const { carIdentifier } = this.props.match.params;
     axios.get(`http://localhost:8080/api/car/${carIdentifier}`).then(res => {
-      const car = JSON.stringify(res.data);
+      const car = res.data;
       this.setState({ car });
       console.log(this.state.car);
       console.log(this.state.car.carName);

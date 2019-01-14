@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import Contact from "../Contact/Contact";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -51,19 +52,47 @@ export default class Home extends Component {
       prevArrow: <SamplePrevArrow />
     };
     return (
-      <div style={{ height: "20px" }}>
-        <Slider {...settings} style={{ height: "80%" }}>
+      <div>
+        <Slider {...settings}>
           <div>
             <img
-              className="d-block"
-              src={require("../../images/koeniseg.jpg")}
+              className="d-block w-100"
+              src={require("../../images/camaro.jpg")}
               alt=""
             />
           </div>
           <div>
             <img
-              className="d-block w-100"
-              src={require("../../images/porshe.jpg")}
+              className="d-block"
+              src={require("../../images/bmw.jpg")}
+              alt=""
+            />
+
+            <p
+              style={{
+                color: "white",
+                fontSize: "26px",
+                fontWeight: "bold",
+                position: "absolute",
+                top: "80%",
+                left: "50%",
+                transform: "translate(-50%, -50%)"
+              }}
+            >
+              ELOELOELOE2222
+            </p>
+          </div>
+          <div>
+            <img
+              className="d-block"
+              src={require("../../images/roys.jpg")}
+              alt=""
+            />
+          </div>
+          <div style={{ display: "inline-block" }}>
+            <img
+              className="d-block"
+              src={require("../../images/roys.jpg")}
               alt=""
             />
             <div
@@ -84,13 +113,6 @@ export default class Home extends Component {
                 ELOELOELOE
               </p>
             </div>
-          </div>
-          <div>
-            <img
-              className="d-block"
-              src={require("../../images/ford.jpg")}
-              alt=""
-            />
           </div>
         </Slider>
       </div>
