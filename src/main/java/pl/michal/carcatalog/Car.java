@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -17,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.aspectj.weaver.ast.Not;
 
 @Entity
 @Builder
@@ -55,6 +57,16 @@ public class Car {
 	private int milage;
 
 	private double rating;
+
+	@NotNull(message = "must provide whether the car is rented now or not")
+	@Pattern(regexp = "^(?:yes|no)$")
+	private String isRented;
+
+	@NotNull(message = "must provide number of seats")
+	private int noOfSeats;
+
+	@NotNull(message = "must provide capacity of trunk")
+	private int trunk;
 	
 	@NotNull(message="must provide year of production")
 	@JsonFormat(pattern = "yyyy-mm-dd")
@@ -74,8 +86,12 @@ public class Car {
 			@NotBlank(message = "must proivde type of transmission") String transmission,
 			@NotNull(message = "must provide milage of car") int milage,
 			double rating,
-			@NotNull(message = "must provide year of production") Date yearOfProduction,
-			Date addDate
+			@NotBlank(message = "must provide year of production") Date yearOfProduction,
+			Date addDate,
+			@NotBlank(message = "must provide whether the car is rented now or not") String isRented,
+			@NotBlank(message = "must provide number of seats") int noOfSeats,
+			@NotBlank(message = "must provide capacity of car trunk") int trunk
+
 			)
 	{
 		this.carName = carName;
@@ -89,6 +105,9 @@ public class Car {
 		this.rating = rating;
 		this.yearOfProduction = yearOfProduction;
 		this.addDate = addDate;
+		this.isRented = isRented;
+		this.noOfSeats = noOfSeats;
+		this.trunk = trunk;
 	}
 
 	public Car() {}
