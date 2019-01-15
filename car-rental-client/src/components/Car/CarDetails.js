@@ -6,8 +6,7 @@ export default class CarDetails extends Component {
     super(props);
     this.state = {
       car: {
-        carName:
-          "fdshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+        carName: "fds"
       }
     };
     console.log(this.props.match.params);
@@ -25,25 +24,69 @@ export default class CarDetails extends Component {
 
   render() {
     return (
-      <div className="d-flex">
-        <ul className="list-group mx-auto list-group-flush">
-          <div className="container">
-            <div className="row">
-              <div className="col-sm">
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                  <h3>{this.state.car.carName}</h3>
-                </li>
-              </div>
-              <div className="col-sm">
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                  <h3>
-                    <span className="badge badge-warning badge-pill" />
-                  </h3>
-                </li>
-              </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">One of three columns</div>
+          <div class="col-sm">
+            <table class="table" style={{ fontSize: "24px" }}>
+              <thead>
+                <tr>
+                  <td colSpan="2">This is your selected car </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Brand</th>
+                  <td>{this.state.car.carName}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Model</th>
+                  <td>{this.state.car.carModel}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Engine</th>
+                  <td>{this.state.car.engineType}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Fuel</th>
+                  <td>{this.state.car.fuelType}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Transmission</th>
+                  <td>{this.state.car.transmission}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Type of drive</th>
+                  <td>{this.state.car.typeOfDrive}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Year of production</th>
+                  <td>{this.state.car.yearOfProduction}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Milage</th>
+                  <td>{this.state.car.milage} km</td>
+                </tr>
+                <tr>
+                  <th scope="row">Rented</th>
+                  <td>{this.state.car.isRented} </td>
+                </tr>
+                <tr>
+                  <th scope="row">Seats</th>
+                  <td>{this.state.car.noOfSeats}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Trunk capacity</th>
+                  <td>{this.state.car.trunk} L</td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="button" class="btn-lg btn-outline-dark " style={{}}>
+              &nbsp;&nbsp;&nbsp;Rent &nbsp;&nbsp;&nbsp;
+            </button>
           </div>
-        </ul>
+          <div class="col-sm">One of three columns</div>
+        </div>
       </div>
     );
   }
