@@ -28,7 +28,17 @@ export default class CarList extends Component {
                 <div className="col-sm">
                   <li className="list-group-item d-flex justify-content-between align-items-center">
                     <h3>
-                      <Link to={`/cars/details/${car.carIdentifier}`}>
+                      <Link
+                        style={{
+                          backgroundColor: "#343A40",
+                          color: "white",
+                          padding: "4px 25px",
+                          textAlign: "center",
+                          textDecoration: "none",
+                          display: "inline-block"
+                        }}
+                        to={`/cars/details/${car.carIdentifier}`}
+                      >
                         {car.carName}&nbsp;{car.carModel}&nbsp;{car.engineType}
                       </Link>
                     </h3>
