@@ -39,20 +39,33 @@ public class CarRentalApplication {
 		public void run(String... args) throws Exception {
 			repo.save(Car.builder().carName("Ferrari").carIdentifier("KR 72AXC")
 					.carModel("F50").engineType("V8").fuelType("Petrol").milage(543212)
-					.rating(10).transmission("sequential").typeOfDrive("RWD").yearOfProduction(date).isRented("no").noOfSeats(4).trunk(100).build());
+					.rating(10).transmission("sequential").typeOfDrive("RWD").yearOfProduction(date).isRented("no").noOfSeats(4).trunk(100).pricePerDay(500).build());
 
 			repo.save(Car.builder().carName("Audi").carIdentifier("KR 872HG")
 					.carModel("A4").engineType("2.0").fuelType("Petrol").milage(75241)
-					.rating(8).transmission("manual").typeOfDrive("RWD").yearOfProduction(date).isRented("no").noOfSeats(5).trunk(300).build());
+					.rating(8).transmission("manual").typeOfDrive("RWD").yearOfProduction(date).isRented("no").noOfSeats(5).trunk(300).pricePerDay(200).build());
 
 
 			repo.save(Car.builder().carName("Skoda").carIdentifier("KR OKUT2")
 					.carModel("Fabia").engineType("1,4").fuelType("Gas").milage(128754)
-					.rating(6).transmission("manual").typeOfDrive("FWD").yearOfProduction(date).isRented("no").noOfSeats(5).trunk(420).build());
+					.rating(6).transmission("manual").typeOfDrive("FWD").yearOfProduction(date).isRented("no").noOfSeats(5).trunk(420).pricePerDay(100).build());
 
 			repo.save(Car.builder().carName("Mercedes").carIdentifier("KR HYE12")
 					.carModel("Benz C").engineType("V6").fuelType("Petrol").milage(98521)
-					.rating(10).transmission("Automatic").typeOfDrive("RWD").yearOfProduction(date).isRented("no").noOfSeats(4).trunk(200).build());
+					.rating(10).transmission("Automatic").typeOfDrive("RWD").yearOfProduction(date).isRented("no").noOfSeats(4).trunk(200).pricePerDay(300).build());
+
+			repo.save(Car.builder().carName("Fiat").carIdentifier("KRA 732A")
+					.carModel("Uno").engineType("1.0").fuelType("Gas").milage(198521)
+					.rating(2).transmission("Manual").typeOfDrive("FWD").yearOfProduction(date).isRented("no").noOfSeats(4).trunk(200).pricePerDay(40).build());
+
+			repo.save(Car.builder().carName("Ford").carIdentifier("KRA 87HQ")
+					.carModel("Mondeo").engineType("1.6").fuelType("Diesel").milage(98521)
+					.rating(10).transmission("Manual").typeOfDrive("FWD").yearOfProduction(date).isRented("no").noOfSeats(5).trunk(400).pricePerDay(100).build());
+
+			repo.save(Car.builder().carName("Porshe").carIdentifier("KR KOLW1")
+					.carModel("Carrera GT").engineType("V8").fuelType("Petrol").milage(98521)
+					.rating(10).transmission("Sequential").typeOfDrive("RWD").yearOfProduction(date).isRented("no").noOfSeats(4).trunk(300).pricePerDay(400).build());
+
 
 		}
 	}

@@ -67,7 +67,10 @@ public class Car {
 
 	@NotNull(message = "must provide capacity of trunk")
 	private int trunk;
-	
+
+	@NotNull(message = "must provide price per day")
+	private int pricePerDay;
+
 	@NotNull(message="must provide year of production")
 	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date yearOfProduction;
@@ -90,7 +93,8 @@ public class Car {
 			Date addDate,
 			@NotBlank(message = "must provide whether the car is rented now or not") String isRented,
 			@NotBlank(message = "must provide number of seats") int noOfSeats,
-			@NotBlank(message = "must provide capacity of car trunk") int trunk
+			@NotBlank(message = "must provide capacity of car trunk") int trunk,
+			@NotBlank(message = "must provide capacity of car trunk") int pricePerDay
 
 			)
 	{
@@ -108,6 +112,7 @@ public class Car {
 		this.isRented = isRented;
 		this.noOfSeats = noOfSeats;
 		this.trunk = trunk;
+		this.pricePerDay = pricePerDay;
 	}
 
 	public Car() {}
