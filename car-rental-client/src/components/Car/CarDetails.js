@@ -87,6 +87,9 @@ export default class CarDetails extends Component {
           <button type="button" className="btn-lg btn-outline-dark " style={{}}>
             &nbsp;&nbsp;&nbsp;Rent now ! &nbsp;&nbsp;&nbsp;
           </button>
+          <h3 style={{ marginTop: "10px" }}>
+            Just {this.state.car.pricePerDay} zł per day !
+          </h3>
         </div>
         <div class="row">
           <div class="col-sm" style={{ marginLeft: "10px" }}>
