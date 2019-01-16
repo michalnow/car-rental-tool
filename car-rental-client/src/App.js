@@ -10,6 +10,7 @@ import Header from "./components/layout/Header";
 import Home from "./components/Home/Home";
 import AddCar from "./components/Car/AddCar";
 import CarDetails from "./components/Car/CarDetails";
+import CarPricing from "./components/Car/CarPricing";
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
             path={"/cars/details/:carIdentifier"}
             component={CarDetails}
           />
+          <Route exact path="/cars/pricing" component={CarPricing} />
         </div>
       </Router>
     );
