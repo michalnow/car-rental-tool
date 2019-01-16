@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import Contact from "../Contact/Contact";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -63,7 +62,7 @@ export default class Home extends Component {
           </div>
           <div>
             <img
-              className="d-block"
+              className="d-block w-100"
               src={require("../../images/bmw.jpg")}
               alt=""
             />
@@ -84,14 +83,14 @@ export default class Home extends Component {
           </div>
           <div>
             <img
-              className="d-block"
+              className="d-block w-100"
               src={require("../../images/roys.jpg")}
               alt=""
             />
           </div>
           <div style={{ display: "inline-block" }}>
             <img
-              className="d-block"
+              className="d-block w-100  "
               src={require("../../images/roys.jpg")}
               alt=""
             />
