@@ -8,7 +8,7 @@ import pl.michal.support.http.Response;
 import java.util.Map;
 
 public class Przelewy24ApiTest {
-    SpyHttpClient httpClient = new SpyHttpClient();
+    /*SpyHttpClient httpClient = new SpyHttpClient();
     String crc_value = "crc_value";
     String merchantId = "123456";
 
@@ -53,5 +53,5 @@ public class Przelewy24ApiTest {
 
             return new Response();
         }
-    }
+    }*/
 }
