@@ -38,8 +38,9 @@ public class CarRentalApplication {
 		@Override
 		public void run(String... args) throws Exception {
 			repo.save(Car.builder().carName("Ferrari").carIdentifier("KR 72AXC")
-					.carModel("F50").engineType("V8").fuelType("Petrol").milage(543212)
-					.rating(10).transmission("sequential").typeOfDrive("RWD").yearOfProduction(date).isRented("no").noOfSeats(4).trunk(100).pricePerDay(500).build());
+					.carModel("F50").engineType("V8").fuelType("Petrol").milage(54321)
+					.rating(10).transmission("sequential").typeOfDrive("RWD").yearOfProduction((date)).isRented("no").noOfSeats(4).trunk(100).pricePerDay(500)
+					.image1("ferrarif50.jpg").image2("ferrariinterior.jpg").image3("ferrariEngine.jpg").build());
 
 			repo.save(Car.builder().carName("Audi").carIdentifier("KR 872HG")
 					.carModel("A4").engineType("2.0").fuelType("Petrol").milage(75241)
@@ -65,7 +66,6 @@ public class CarRentalApplication {
 			repo.save(Car.builder().carName("Porshe").carIdentifier("KR KOLW1")
 					.carModel("Carrera GT").engineType("V8").fuelType("Petrol").milage(98521)
 					.rating(10).transmission("Sequential").typeOfDrive("RWD").yearOfProduction(date).isRented("no").noOfSeats(4).trunk(300).pricePerDay(400).build());
-
 
 		}
 	}
