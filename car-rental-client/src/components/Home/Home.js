@@ -51,13 +51,14 @@ export default class Home extends Component {
       prevArrow: <SamplePrevArrow />
     };
     return (
-      <div>
+      <div style={{ backgroundColor: "black" }}>
         <Slider {...settings}>
           <div>
             <img
               className="d-block w-100"
               src={require("../../images/camaro.jpg")}
               alt=""
+              style={{ height: "93.2vh" }}
             />
           </div>
           <div>
@@ -65,6 +66,7 @@ export default class Home extends Component {
               className="d-block w-100"
               src={require("../../images/bmw.jpg")}
               alt=""
+              style={{ height: "93.2vh" }}
             />
 
             <p
@@ -86,6 +88,7 @@ export default class Home extends Component {
               className="d-block w-100"
               src={require("../../images/roys.jpg")}
               alt=""
+              style={{ height: "93.2vh" }}
             />
           </div>
           <div style={{ display: "inline-block" }}>
@@ -93,6 +96,7 @@ export default class Home extends Component {
               className="d-block w-100  "
               src={require("../../images/roys.jpg")}
               alt=""
+              style={{ height: "93.2vh" }}
             />
             <div
               style={{
