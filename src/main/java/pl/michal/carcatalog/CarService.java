@@ -1,6 +1,7 @@
 package pl.michal.carcatalog;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -10,11 +11,14 @@ import pl.michal.exceptions.CarIdentifierException;
 @Service
 public class CarService {
 
+	private Sort sortByIdAsc() {
+		return new Sort(Sort.Direction.DESC, "pricePerDay");
+	}
 	@Autowired
 	private CarRepository carRepository;
 
 	public Iterable<Car> findAll() {
-		return carRepository.findAll();
+		return carRepository.findAll(sortByIdAsc());
 	}
 
 	public Car findCarByIdentifier(String carIdentifier) {
