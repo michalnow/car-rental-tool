@@ -72,11 +72,16 @@ public class Car {
 	private int pricePerDay;
 
 	@NotNull(message="must provide year of production")
-	@JsonFormat(pattern = "yyyy-mm-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date yearOfProduction;
+
+	private String image1;
+	private String image2;
+	private String image3;
 	
-	@JsonFormat(pattern = "yyyy-mm-dd")
+	@JsonFormat(pattern = "yyyy-MM-DD")
 	private Date addDate;
+
 
 	public Car(
 			@NotBlank(message = "car name must be provided") String carName,
@@ -87,17 +92,18 @@ public class Car {
 			@NotBlank(message = "must provide  fuel type") String fuelType,
 			@NotBlank(message = "must provide type of drive") String typeOfDrive,
 			@NotBlank(message = "must proivde type of transmission") String transmission,
-			@NotNull(message = "must provide milage of car") int milage,
-			double rating,
-			@NotBlank(message = "must provide year of production") Date yearOfProduction,
-			Date addDate,
-			@NotBlank(message = "must provide whether the car is rented now or not") String isRented,
-			@NotBlank(message = "must provide number of seats") int noOfSeats,
-			@NotBlank(message = "must provide capacity of car trunk") int trunk,
-			@NotBlank(message = "must provide capacity of car trunk") int pricePerDay
-
-			)
-	{
+			@NotNull(message = "must provide milage of car") int milage, double rating,
+			@NotNull(message = "must provide whether the car is rented now or not")
+			@Pattern(regexp = "^(?:yes|no)$") String isRented,
+			@NotNull(message = "must provide number of seats") int noOfSeats,
+			@NotNull(message = "must provide capacity of trunk") int trunk,
+			@NotNull(message = "must provide price per day") int pricePerDay,
+			@NotNull(message = "must provide year of production") Date yearOfProduction,
+			String image1,
+			String image2,
+			String image3,
+			Date addDate
+	) {
 		this.carName = carName;
 		this.carModel = carModel;
 		this.carIdentifier = carIdentifier;
@@ -107,13 +113,20 @@ public class Car {
 		this.transmission = transmission;
 		this.milage = milage;
 		this.rating = rating;
-		this.yearOfProduction = yearOfProduction;
-		this.addDate = addDate;
 		this.isRented = isRented;
 		this.noOfSeats = noOfSeats;
 		this.trunk = trunk;
 		this.pricePerDay = pricePerDay;
+		this.yearOfProduction = yearOfProduction;
+		this.image1 = image1;
+		this.image2 = image2;
+		this.image3 = image3;
+		this.addDate = addDate;
 	}
+
+
+
+
 
 	public Car() {}
 
