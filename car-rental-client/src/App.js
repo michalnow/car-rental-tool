@@ -11,12 +11,13 @@ import Home from "./components/Home/Home";
 import AddCar from "./components/Car/AddCar";
 import CarDetails from "./components/Car/CarDetails";
 import CarPricing from "./components/Car/CarPricing";
+import CarOrder from "./components/Car/CarOrder";
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className="App ">
           <Header />
           <Route exact path="/" component={Home} />
           <Route exact path="/cars" component={CarList} />
@@ -25,6 +26,11 @@ class App extends Component {
             exact
             path={"/cars/details/:carIdentifier"}
             component={CarDetails}
+          />
+          <Route
+            exact
+            path="/cars/details/:carIdentifier/rent"
+            component={CarOrder}
           />
           <Route exact path="/cars/pricing" component={CarPricing} />
         </div>
