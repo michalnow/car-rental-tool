@@ -23,12 +23,12 @@ export default class Header extends Component {
             <Link to="/" className="nav-item nav-link">
               Home
             </Link>
-            <Link to="/cars" className="nav-item nav-link" href="#">
+            <Link to="/cars" className="nav-item nav-link">
               Cars
             </Link>
-            <a className="nav-item nav-link" href="#">
+            <Link to="/cars/pricing" className="nav-item nav-link">
               Pricing
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
