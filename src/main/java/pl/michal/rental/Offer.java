@@ -6,6 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class Offer {
-    private double value;
+    private double value; 
 
 }
