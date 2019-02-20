@@ -1,23 +1,34 @@
 package pl.michal.payments;
 
 import com.stripe.model.Charge;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController Controller
-public class CheckoutController {
+import javax.servlet.http.HttpServletRequest;
 
-    @Value("${STRIPE_PUBLIC_KEY}")
-    private String stripePublicKey;
+@RestController
+@RequestMapping("/payment")
+@CrossOrigin
+public class PaymentController {
 
-    @RequestMapping("/checkout")
-    public String checkout(Model model){
-        model.addAttribute("amount", 50 * 100);
-        model.addAttribute("stripePublicKey", stripePublicKey);
-        model.addAttribute("currency", ChargeRequest.Currency.PLN);
-        return "checkout";
+    private StripeClient stripeClient;
+
+    @Autowired
+    PaymentController(StripeClient stripeClient){
+        this.stripeClient = stripeClient;
     }
+
+    @PostMapping("/charge")
+    public Charge chargeCard(HttpServletRequest request) throws Exception {
+        String token = request.getHeader("token");
+        Double amount = Double.parseDouble(request.getHeader("amount"));
+        return this.stripeClient.chargeNewCreditCard(token,amount);
+    }
+
 }
