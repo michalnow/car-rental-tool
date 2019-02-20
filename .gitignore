@@ -1,6 +1,6 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
-
+/src/main/java/pl/michal/payments/StripeClient.java
 ### STS ###
 .apt_generated
 .classpath
