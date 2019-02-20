@@ -22,56 +22,10 @@ export default class AddCar extends Component {
     };
   }
 
-  handleChangeYear = event => {
-    this.setState({ yearOfProduction: event.target.value });
-  };
-
-  handleChangeRating = event => {
-    this.setState({ rating: event.target.value });
-  };
-
-  handleChangeMilage = event => {
-    this.setState({ milage: event.target.value });
-  };
-
-  handleChangeTrans = event => {
-    this.setState({ transmission: event.target.value });
-  };
-
-  handleChangeDrive = event => {
-    this.setState({ typeOfDrive: event.target.value });
-  };
-
-  handleChangeName = event => {
-    this.setState({ carName: event.target.value });
-  };
-
-  handleChangeModel = event => {
-    this.setState({ carModel: event.target.value });
-  };
-
-  handleChangeCarId = event => {
-    this.setState({ carIdentifier: event.target.value });
-  };
-
-  handleChangeEngine = event => {
-    this.setState({ engineType: event.target.value });
-  };
-
-  handleChangeFuel = event => {
-    this.setState({ fuelType: event.target.value });
-  };
-
-  handleChangeSeats = event => {
-    this.setState({ noOfSeats: event.target.value });
-  };
-
-  handleChangeTrunk = event => {
-    this.setState({ trunk: event.target.value });
-  };
-
-  handleChangePricePerDay = event => {
-    this.setState({ pricePerDay: event.target.value });
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   };
 
   handleSubmit = event => {
@@ -93,8 +47,6 @@ export default class AddCar extends Component {
       trunk: this.state.trunk,
       pricePerDay: this.state.pricePerDay
     };
-
-    console.log(car);
 
     axios({
       headers: {
@@ -131,7 +83,7 @@ export default class AddCar extends Component {
                     id="brand"
                     name="carName"
                     placeholder="brand"
-                    onChange={this.handleChangeName}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="form-group col-md-6">
@@ -142,7 +94,7 @@ export default class AddCar extends Component {
                     id="model"
                     name="carModel"
                     placeholder="model"
-                    onChange={this.handleChangeModel}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
@@ -153,7 +105,7 @@ export default class AddCar extends Component {
                   className="form-control"
                   id="carId"
                   name="carIdentifier"
-                  onChange={this.handleChangeCarId}
+                  onChange={this.handleChange}
                 />
               </div>
               <div className="form-row">
@@ -164,7 +116,7 @@ export default class AddCar extends Component {
                     className="form-control"
                     id="engine"
                     name="engineType"
-                    onChange={this.handleChangeEngine}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="form-group col-md-4">
@@ -173,7 +125,7 @@ export default class AddCar extends Component {
                     id="drive"
                     className="form-control"
                     name="typeOfDrive"
-                    onChange={this.handleChangeDrive}
+                    onChange={this.handleChange}
                   >
                     <option defaultValue>RWD</option>
                     <option>FWD</option>
@@ -187,7 +139,7 @@ export default class AddCar extends Component {
                     id="fuel"
                     className="form-control"
                     name="fuelType"
-                    onChange={this.handleChangeFuel}
+                    onChange={this.handleChange}
                   >
                     <option defaultValue>Petrol</option>
                     <option>Diesel</option>
@@ -203,7 +155,7 @@ export default class AddCar extends Component {
                     id="trans"
                     className="form-control"
                     name="transmission"
-                    onChange={this.handleChangeTrans}
+                    onChange={this.handleChange}
                   >
                     <option defaultValue>Automatic</option>
                     <option>Manual</option>
@@ -218,8 +170,9 @@ export default class AddCar extends Component {
                     max="9999999"
                     className="form-control"
                     id="milage"
+                    name="milage"
                     size="20"
-                    onChange={this.handleChangeMilage}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
@@ -232,7 +185,7 @@ export default class AddCar extends Component {
                     id="seats"
                     name="noOfSeats"
                     placeholder=""
-                    onChange={this.handleChangeSeats}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="form-group col-md-6">
@@ -245,7 +198,7 @@ export default class AddCar extends Component {
                     id="trunk"
                     name="trunk"
                     placeholder="Liters"
-                    onChange={this.handleChangeTrunk}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
@@ -258,7 +211,7 @@ export default class AddCar extends Component {
                     id="year"
                     name="yearOfProduction"
                     placeholder="YYYY-MM-DD"
-                    onChange={this.handleChangeYear}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="form-group col-md-6">
@@ -271,7 +224,7 @@ export default class AddCar extends Component {
                     id="rating"
                     name="rating"
                     placeholder="0-10"
-                    onChange={this.handleChangeRating}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
@@ -283,7 +236,7 @@ export default class AddCar extends Component {
                   id="pricePerDay"
                   name="pricePerDay"
                   placeholder="in ZŁ"
-                  onChange={this.handleChangePricePerDay}
+                  onChange={this.handleChange}
                 />
               </div>
               <button type="submit" className="btn btn-primary">
