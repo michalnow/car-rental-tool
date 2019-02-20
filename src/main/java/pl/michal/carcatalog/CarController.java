@@ -13,6 +13,7 @@ import pl.michal.services.MapValidationErrorService;
 
 @RestController
 @RequestMapping("/api/car")
+@CrossOrigin
 public class CarController {
 
 	@Autowired
