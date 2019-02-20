@@ -9,12 +9,16 @@ export default class AddCar extends Component {
       carModel: "",
       carIdentifier: "",
       engineType: "",
-      fuelType: "",
-      typeOfDrive: "",
-      transmission: "",
+      fuelType: "Petrol",
+      typeOfDrive: "RWD",
+      transmission: "Automatic",
       milage: "",
       rating: "",
-      yearOfProduction: ""
+      yearOfProduction: "",
+      isRented: "no",
+      noOfSeats: "",
+      trunk: "",
+      pricePerDay: ""
     };
   }
 
@@ -58,6 +62,18 @@ export default class AddCar extends Component {
     this.setState({ fuelType: event.target.value });
   };
 
+  handleChangeSeats = event => {
+    this.setState({ noOfSeats: event.target.value });
+  };
+
+  handleChangeTrunk = event => {
+    this.setState({ trunk: event.target.value });
+  };
+
+  handleChangePricePerDay = event => {
+    this.setState({ pricePerDay: event.target.value });
+  };
+
   handleSubmit = event => {
     event.preventDefault();
 
@@ -71,7 +87,11 @@ export default class AddCar extends Component {
       transmission: this.state.transmission,
       milage: this.state.milage,
       rating: this.state.rating,
-      yearOfProduction: this.state.yearOfProduction
+      yearOfProduction: this.state.yearOfProduction,
+      isRented: this.state.isRented,
+      noOfSeats: this.state.noOfSeats,
+      trunk: this.state.trunk,
+      pricePerDay: this.state.pricePerDay
     };
 
     console.log(car);
@@ -205,6 +225,32 @@ export default class AddCar extends Component {
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
+                  <label htmlFor="year">Number of seats</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="seats"
+                    name="noOfSeats"
+                    placeholder=""
+                    onChange={this.handleChangeSeats}
+                  />
+                </div>
+                <div className="form-group col-md-6">
+                  <label htmlFor="rating">Trunk capacity</label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="10000"
+                    className="form-control"
+                    id="trunk"
+                    name="trunk"
+                    placeholder="Liters"
+                    onChange={this.handleChangeTrunk}
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group col-md-6">
                   <label htmlFor="year">Production year</label>
                   <input
                     type="text"
@@ -229,7 +275,17 @@ export default class AddCar extends Component {
                   />
                 </div>
               </div>
-
+              <div className="form-group">
+                <label htmlFor="carId">Price per day</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="pricePerDay"
+                  name="pricePerDay"
+                  placeholder="in ZŁ"
+                  onChange={this.handleChangePricePerDay}
+                />
+              </div>
               <button type="submit" className="btn btn-primary">
                 &nbsp;Add &nbsp;
               </button>
