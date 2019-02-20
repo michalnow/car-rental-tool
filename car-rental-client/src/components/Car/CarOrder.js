@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Slider from "react-slick";
+import { Link } from "react-router-dom";
+import Provider from "../Stripe/Provider";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -42,7 +43,8 @@ export default class CarOrder extends Component {
     this.state = {
       car: {
         carName: "f"
-      }
+      },
+      value: "0"
     };
   }
 
@@ -57,6 +59,35 @@ export default class CarOrder extends Component {
     });
     const img = "../../images";
   }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const car = {
+      id: this.state.car.id,
+      carName: this.state.carName,
+      carModel: this.state.carModel,
+      carIdentifier: this.state.carIdentifier
+    };
+    axios({
+      headers: {
+        "Content-Type": "application/json; charset=utf8"
+      },
+      method: "POST",
+      url: `http://localhost:8080/api/car/${this.state.car.id}/${
+        this.state.value
+      }`,
+      data: car
+    })
+      .then(res => {})
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  handleChange = event => {
+    this.setState({ value: event.target.value });
+  };
 
   render() {
     const settings = {
@@ -75,59 +106,72 @@ export default class CarOrder extends Component {
     return (
       <div>
         <div
-          class="container"
+          className="container"
           style={{ justifyContent: "center", alignItems: "center" }}
         >
-          <div class="row justify-content-md-center">
-            <div class="col-sm"> </div>
-            <div class="col-md-auto">
-              <table
-                class="table"
-                style={{ fontSize: "25px", fontWeight: "bold" }}
-              >
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      {this.state.car.carName}&nbsp;{this.state.car.carModel}
-                      &nbsp; {this.state.car.engineType}
-                    </th>
-                  </tr>
+          <form onSubmit={this.handleSubmit}>
+            <div className="row justify-content-md-center">
+              <div className="col-sm"> </div>
+              <div className="col-md-auto">
+                <table
+                  className="table"
+                  style={{ fontSize: "25px", fontWeight: "bold" }}
+                >
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        {this.state.car.carName}&nbsp;{this.state.car.carModel}
+                        &nbsp; {this.state.car.engineType}
+                      </th>
+                    </tr>
 
-                  <tr>
-                    <th scope="row">
-                      {this.state.car.typeOfDrive} drive type with{" "}
-                      {this.state.car.transmission} gear box
-                    </th>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Manufactured in {this.state.car.yearOfProduction}
-                    </th>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      {this.state.car.milage} km driven with this car
-                    </th>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">
-                      {this.state.car.noOfSeats} seats with{" "}
-                      {this.state.car.trunk} L trunk
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
-              <button
-                type="button"
-                className="btn-lg btn-outline-dark "
-                style={{}}
-              >
-                &nbsp;&nbsp;&nbsp;Pay now ! &nbsp;&nbsp;&nbsp;
-              </button>
+                    <tr>
+                      <th scope="row">
+                        {this.state.car.typeOfDrive} drive type with{" "}
+                        {this.state.car.transmission} gear box
+                      </th>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        Manufactured in {this.state.car.yearOfProduction}
+                      </th>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        {this.state.car.milage} km driven with this car
+                      </th>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        {this.state.car.noOfSeats} seats with{" "}
+                        {this.state.car.trunk} L trunk
+                      </th>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        {`${this.state.car.pricePerDay}` *
+                          `${this.state.value}`}{" "}
+                        ZŁ you have to pay
+                      </th>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        Days of rent:{" "}
+                        <input
+                          type="number"
+                          value={this.state.value}
+                          onChange={this.handleChange}
+                          min="1"
+                        />
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+                <Provider />
+              </div>
+              <div className="col-sm"> </div>
             </div>
-            <div class="col-sm"> </div>
-          </div>
+          </form>
         </div>
       </div>
     );
