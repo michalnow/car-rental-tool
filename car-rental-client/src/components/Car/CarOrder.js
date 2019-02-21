@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 import Provider from "../Stripe/Provider";
 
 function SampleNextArrow(props) {
@@ -44,7 +44,7 @@ export default class CarOrder extends Component {
       car: {
         carName: "f"
       },
-      value: "0"
+      value: "1"
     };
   }
 
@@ -104,74 +104,83 @@ export default class CarOrder extends Component {
       prevArrow: <SamplePrevArrow />
     };
     return (
-      <div>
-        <div
-          className="container"
-          style={{ justifyContent: "center", alignItems: "center" }}
-        >
-          <form onSubmit={this.handleSubmit}>
-            <div className="row justify-content-md-center">
-              <div className="col-sm"> </div>
-              <div className="col-md-auto">
-                <table
-                  className="table"
-                  style={{ fontSize: "25px", fontWeight: "bold" }}
-                >
-                  <tbody>
-                    <tr>
-                      <th scope="row">
-                        {this.state.car.carName}&nbsp;{this.state.car.carModel}
-                        &nbsp; {this.state.car.engineType}
-                      </th>
-                    </tr>
+      <div className="card text-center">
+        <div className="card-header">
+          {" "}
+          <h2>Your order looks like this</h2>
+        </div>
+        <div className="card-body">
+          <div>
+            <div
+              className="container"
+              style={{ justifyContent: "center", alignItems: "center" }}
+            >
+              <form onSubmit={this.handleSubmit}>
+                <div className="row justify-content-md-center">
+                  <div className="col-sm"> </div>
+                  <div className="col-md-auto">
+                    <table
+                      className="table"
+                      style={{ fontSize: "25px", fontWeight: "bold" }}
+                    >
+                      <tbody>
+                        <tr>
+                          <th scope="row">
+                            {this.state.car.carName}&nbsp;
+                            {this.state.car.carModel}
+                            &nbsp; {this.state.car.engineType}
+                          </th>
+                        </tr>
 
-                    <tr>
-                      <th scope="row">
-                        {this.state.car.typeOfDrive} drive type with{" "}
-                        {this.state.car.transmission} gear box
-                      </th>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        Manufactured in {this.state.car.yearOfProduction}
-                      </th>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        {this.state.car.milage} km driven with this car
-                      </th>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        {this.state.car.noOfSeats} seats with{" "}
-                        {this.state.car.trunk} L trunk
-                      </th>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        {`${this.state.car.pricePerDay}` *
-                          `${this.state.value}`}{" "}
-                        ZŁ you have to pay
-                      </th>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        Days of rent:{" "}
-                        <input
-                          type="number"
-                          value={this.state.value}
-                          onChange={this.handleChange}
-                          min="1"
-                        />
-                      </th>
-                    </tr>
-                  </tbody>
-                </table>
-                <Provider />
-              </div>
-              <div className="col-sm"> </div>
+                        <tr>
+                          <th scope="row">
+                            {this.state.car.typeOfDrive} drive type with{" "}
+                            {this.state.car.transmission} gear box
+                          </th>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            Manufactured in {this.state.car.yearOfProduction}
+                          </th>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            {this.state.car.milage} km driven with this car
+                          </th>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            {this.state.car.noOfSeats} seats with{" "}
+                            {this.state.car.trunk} L trunk
+                          </th>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            {`${this.state.car.pricePerDay}` *
+                              `${this.state.value}`}{" "}
+                            ZŁ you have to pay
+                          </th>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            Days of rent:{" "}
+                            <input
+                              type="number"
+                              value={this.state.value}
+                              onChange={this.handleChange}
+                              min="1"
+                            />
+                          </th>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <Provider />
+                  </div>
+                  <div className="col-sm"> </div>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     );
