@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import pl.michal.carcatalog.Car;
 import pl.michal.carcatalog.CarRepository;
 
@@ -20,7 +24,7 @@ public class CarRentalApplication {
 	CarRepository repo;
 
 	@Component
-	private class DevFixtures implements CommandLineRunner{
+	private class DevFixtures implements CommandLineRunner {
 
 		String pattern = "yyyy-mm-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -69,7 +73,15 @@ public class CarRentalApplication {
 
 		}
 	}
+
+
+
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(CarRentalApplication.class, args);
 	}
+
+
+
 }
