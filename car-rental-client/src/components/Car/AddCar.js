@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
-
-export default class AddCar extends Component {
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createCar } from "../../actions/carActions";
+class AddCar extends Component {
   constructor() {
     super();
     this.state = {
@@ -48,23 +49,7 @@ export default class AddCar extends Component {
       pricePerDay: this.state.pricePerDay
     };
 
-    axios({
-      headers: {
-        "Content-Type": "application/json; charset=utf8"
-      },
-      method: "POST",
-      url: `http://localhost:8080/api/car`,
-      data: car
-    })
-      .then(res => {
-        console.log(car);
-        console.log(res);
-        console.log(res.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    this.props.history.push("/cars");
+    this.props.createCar(car, this.props.history);
   };
 
   render() {
@@ -250,3 +235,12 @@ export default class AddCar extends Component {
     );
   }
 }
+
+AddCar.propTypes = () => {
+  createCar = PropTypes.func.isRequired;
+};
+
+export default connect(
+  null,
+  { createCar }
+)(AddCar);
