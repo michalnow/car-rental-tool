@@ -12,29 +12,39 @@ import AddCar from "./components/Car/AddCar";
 import CarDetails from "./components/Car/CarDetails";
 import CarPricing from "./components/Car/CarPricing";
 import CarOrder from "./components/Car/CarOrder";
+import StripeProvider from "./components/Stripe/StripeProvider";
+import { Provider } from "react-redux";
+import store from "./store";
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="App ">
-          <Header />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/cars" component={CarList} />
-          <Route exact path="/car/add" component={AddCar} />
-          <Route
-            exact
-            path={"/cars/details/:carIdentifier"}
-            component={CarDetails}
-          />
-          <Route
-            exact
-            path="/cars/details/:carIdentifier/rent"
-            component={CarOrder}
-          />
-          <Route exact path="/cars/pricing" component={CarPricing} />
-        </div>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <div className="App ">
+            <Header />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/cars" component={CarList} />
+            <Route exact path="/car/add" component={AddCar} />
+            <Route
+              exact
+              path={"/cars/details/:carIdentifier"}
+              component={CarDetails}
+            />
+            <Route
+              exact
+              path="/cars/details/:carIdentifier/rent"
+              component={CarOrder}
+            />
+            <Route exact path="/cars/pricing" component={CarPricing} />
+            <Route
+              exact
+              path="/cars/details/:carIdentifier/rent/payment/charge"
+              component={StripeProvider}
+            />
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
