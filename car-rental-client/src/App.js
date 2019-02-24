@@ -15,6 +15,7 @@ import CarOrder from "./components/Car/CarOrder";
 import StripeProvider from "./components/Stripe/StripeProvider";
 import { Provider } from "react-redux";
 import store from "./store";
+import UpdateCar from "./components/Car/UpdateCar";
 
 class App extends Component {
   render() {
@@ -28,18 +29,23 @@ class App extends Component {
             <Route exact path="/car/add" component={AddCar} />
             <Route
               exact
-              path={"/cars/details/:carIdentifier"}
+              path="/car/update/:carIdentifier"
+              component={UpdateCar}
+            />
+            <Route
+              exact
+              path={"/car/details/:carIdentifier"}
               component={CarDetails}
             />
             <Route
               exact
-              path="/cars/details/:carIdentifier/rent"
+              path="/car/details/:carIdentifier/rent"
               component={CarOrder}
             />
             <Route exact path="/cars/pricing" component={CarPricing} />
             <Route
               exact
-              path="/cars/details/:carIdentifier/rent/payment/charge"
+              path="/car/details/:carIdentifier/rent/payment/charge"
               component={StripeProvider}
             />
           </div>
