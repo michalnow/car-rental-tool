@@ -1,23 +1,16 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getCars } from "../../actions/carActions";
+import PropTypes from "prop-types";
 
-export default class CarDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cars: []
-    };
-  }
-
+class CarPricing extends Component {
   componentDidMount() {
-    axios.get("http://localhost:8080/api/car/all").then(res => {
-      const cars = res.data;
-      this.setState({ cars });
-    });
+    this.props.getCars();
   }
 
   render() {
+    const { cars } = this.props.car;
     return (
       <div className="d-flex">
         <table
@@ -35,15 +28,15 @@ export default class CarDetails extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.cars.map((car, i) => (
-              <tr>
+            {cars.map(car => (
+              <tr key={car.id}>
                 <td>
                   {car.carName}&nbsp;{car.carModel}&nbsp;{car.engineType}
                 </td>
                 <td>{car.pricePerDay} zł</td>
                 <td>
                   <Link
-                    to={`/cars/details/${car.carIdentifier}`}
+                    to={`/car/details/${car.carIdentifier}`}
                     style={{ color: "black" }}
                   >
                     Rent here
@@ -57,3 +50,17 @@ export default class CarDetails extends Component {
     );
   }
 }
+
+CarPricing.propTypes = {
+  car: PropTypes.object.isRequired,
+  getCars: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  car: state.car
+});
+
+export default connect(
+  mapStateToProps,
+  { getCars }
+)(CarPricing);
