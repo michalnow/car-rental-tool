@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
+import { getCar } from "../../actions/carActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -36,29 +39,15 @@ function SamplePrevArrow(props) {
   );
 }
 
-export default class CarDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      car: {
-        carName: "fds"
-      }
-    };
-    console.log(this.props.match.params);
-  }
-
+class CarDetails extends Component {
   componentDidMount() {
     const { carIdentifier } = this.props.match.params;
-    axios.get(`http://localhost:8080/api/car/${carIdentifier}`).then(res => {
-      const car = res.data;
-      this.setState({ car });
-      console.log(this.state.car);
-      console.log(this.state.car.carName);
-      window.scrollTo(0, 0);
-    });
+    this.props.getCar(carIdentifier, this.props.history);
   }
 
   render() {
+    const { car } = this.props.car;
+    //const img = "../../images/" + `${this.state.car.image1}`;
     const settings = {
       dots: false,
       pauseOnHover: false,
@@ -74,7 +63,7 @@ export default class CarDetails extends Component {
     };
 
     return (
-      <div class="container">
+      <div className="container">
         <div
           style={{
             justifyContent: "center",
@@ -84,16 +73,22 @@ export default class CarDetails extends Component {
             marginBottom: "5px"
           }}
         >
-          <button type="button" className="btn-lg btn-outline-dark " style={{}}>
-            &nbsp;&nbsp;&nbsp;Rent now ! &nbsp;&nbsp;&nbsp;
-          </button>
+          <Link to={`/car/details/${car.carIdentifier}/rent`}>
+            <button
+              type="button"
+              className="btn btn-lg btn-outline-dark "
+              style={{}}
+            >
+              &nbsp;&nbsp;&nbsp;Rent now ! &nbsp;&nbsp;&nbsp;
+            </button>
+          </Link>
           <h3 style={{ marginTop: "10px" }}>
-            Just {this.state.car.pricePerDay} zł per day !
+            Just {car.pricePerDay} zł per day !
           </h3>
         </div>
-        <div class="row">
-          <div class="col-sm" style={{ marginLeft: "10px" }}>
-            <table class="table" style={{ fontSize: "18px" }}>
+        <div className="row">
+          <div className="col-sm" style={{ marginLeft: "10px" }}>
+            <table className="table" style={{ fontSize: "18px" }}>
               <tbody>
                 <tr>
                   <th scope="row">Brand</th>
@@ -128,41 +123,41 @@ export default class CarDetails extends Component {
               </tbody>
             </table>
           </div>
-          <div class="col-sm">
+          <div className="col-sm">
             <table
-              class="table"
+              className="table"
               style={{ fontSize: "18px", alignItems: "left" }}
             >
               <tbody>
                 <tr>
-                  <th scope="row">{this.state.car.carName}</th>
+                  <th scope="row">{car.carName}</th>
                 </tr>
                 <tr>
-                  <th scope="row">{this.state.car.carModel}</th>
+                  <th scope="row">{car.carModel}</th>
                 </tr>
                 <tr>
-                  <th scope="row">{this.state.car.engineType}</th>
+                  <th scope="row">{car.engineType}</th>
                 </tr>
                 <tr>
-                  <th scope="row">{this.state.car.fuelType}</th>
+                  <th scope="row">{car.fuelType}</th>
                 </tr>
                 <tr>
-                  <th scope="row">{this.state.car.transmission}</th>
+                  <th scope="row">{car.transmission}</th>
                 </tr>
                 <tr>
-                  <th scope="row">{this.state.car.typeOfDrive}</th>
+                  <th scope="row">{car.typeOfDrive}</th>
                 </tr>
                 <tr>
-                  <th scope="row">{this.state.car.yearOfProduction}</th>
+                  <th scope="row">{car.yearOfProduction}</th>
                 </tr>
                 <tr>
-                  <th scope="row">{this.state.car.milage} km</th>
+                  <th scope="row">{car.milage} km</th>
                 </tr>
                 <tr>
-                  <th scope="row">{this.state.car.noOfSeats}</th>
+                  <th scope="row">{car.noOfSeats}</th>
                 </tr>
                 <tr>
-                  <th scope="row">{this.state.car.trunk} L</th>
+                  <th scope="row">{car.trunk} L</th>
                 </tr>
               </tbody>
             </table>
@@ -177,6 +172,7 @@ export default class CarDetails extends Component {
         >
           Check this out !
         </div>
+
         <Slider {...settings}>
           <div>
             <img
@@ -204,3 +200,17 @@ export default class CarDetails extends Component {
     );
   }
 }
+
+CarDetails.propTypes = {
+  getCar: PropTypes.func.isRequired,
+  car: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  car: state.car
+});
+
+export default connect(
+  mapStateToProps,
+  { getCar }
+)(CarDetails);

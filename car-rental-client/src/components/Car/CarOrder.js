@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-
-import Provider from "../Stripe/Provider";
+import PaymentProvider from "../Stripe/PaymentProvider";
+import { getCar } from "../../actions/carActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -37,46 +39,36 @@ function SamplePrevArrow(props) {
   );
 }
 
-export default class CarOrder extends Component {
+class CarOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      car: {
-        carName: "f"
-      },
-      value: "1"
+      value: "1",
+      amount: "0"
     };
   }
 
   componentDidMount() {
     const { carIdentifier } = this.props.match.params;
-    axios.get(`http://localhost:8080/api/car/${carIdentifier}`).then(res => {
-      const car = res.data;
-      this.setState({ car });
-      console.log(this.state.car);
-      console.log(this.state.car.carName);
-      window.scrollTo(0, 0);
-    });
-    const img = "../../images";
+    this.props.getCar(carIdentifier, this.props.history);
   }
 
   handleSubmit = event => {
     event.preventDefault();
 
     const car = {
-      id: this.state.car.id,
-      carName: this.state.carName,
-      carModel: this.state.carModel,
-      carIdentifier: this.state.carIdentifier
+      id: this.props.car.car.id,
+      carName: this.props.car.car.carName,
+      carModel: this.props.car.car.carModel,
+      carIdentifier: this.props.car.car.carIdentifier
     };
+
     axios({
       headers: {
         "Content-Type": "application/json; charset=utf8"
       },
       method: "POST",
-      url: `http://localhost:8080/api/car/${this.state.car.id}/${
-        this.state.value
-      }`,
+      url: `/api/car/${this.props.car.car.id}/${this.state.value}`,
       data: car
     })
       .then(res => {})
@@ -87,9 +79,15 @@ export default class CarOrder extends Component {
 
   handleChange = event => {
     this.setState({ value: event.target.value });
+    this.setState({
+      amount:
+        this.props.car.car.pricePerDay * this.state.value +
+        this.props.car.car.pricePerDay
+    });
   };
 
   render() {
+    const { car } = this.props.car;
     const settings = {
       dots: false,
       pauseOnHover: false,
@@ -126,39 +124,37 @@ export default class CarOrder extends Component {
                       <tbody>
                         <tr>
                           <th scope="row">
-                            {this.state.car.carName}&nbsp;
-                            {this.state.car.carModel}
-                            &nbsp; {this.state.car.engineType}
+                            {car.carName}&nbsp;
+                            {car.carModel}
+                            &nbsp; {car.engineType}
                           </th>
                         </tr>
 
                         <tr>
                           <th scope="row">
-                            {this.state.car.typeOfDrive} drive type with{" "}
-                            {this.state.car.transmission} gear box
+                            {car.typeOfDrive} drive type with {car.transmission}{" "}
+                            gear box
                           </th>
                         </tr>
                         <tr>
                           <th scope="row">
-                            Manufactured in {this.state.car.yearOfProduction}
+                            Manufactured in {car.yearOfProduction}
                           </th>
                         </tr>
                         <tr>
                           <th scope="row">
-                            {this.state.car.milage} km driven with this car
+                            {car.milage} km driven with this car
                           </th>
                         </tr>
                         <tr>
                           <th scope="row">
-                            {this.state.car.noOfSeats} seats with{" "}
-                            {this.state.car.trunk} L trunk
+                            {car.noOfSeats} seats with {car.trunk} L trunk
                           </th>
                         </tr>
                         <tr>
                           <th scope="row">
-                            {`${this.state.car.pricePerDay}` *
-                              `${this.state.value}`}{" "}
-                            ZŁ you have to pay
+                            {`${car.pricePerDay}` * `${this.state.value}`} ZŁ
+                            you have to pay
                           </th>
                         </tr>
                         <tr>
@@ -174,7 +170,7 @@ export default class CarOrder extends Component {
                         </tr>
                       </tbody>
                     </table>
-                    <Provider />
+                    <PaymentProvider />
                   </div>
                   <div className="col-sm"> </div>
                 </div>
@@ -186,3 +182,17 @@ export default class CarOrder extends Component {
     );
   }
 }
+
+CarOrder.propTypes = {
+  getCar: PropTypes.func.isRequired,
+  car: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  car: state.car
+});
+
+export default connect(
+  mapStateToProps,
+  { getCar }
+)(CarOrder);
