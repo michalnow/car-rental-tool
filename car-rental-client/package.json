@@ -13,6 +13,7 @@
     "classnames": "^2.2.6",
     "font-awesome": "^4.7.0",
     "i": "^0.3.6",
+    "jwt-decode": "^2.2.0",
     "npm": "^6.5.0",
     "qs": "^6.6.0",
     "react": "^16.6.3",
@@ -36,6 +37,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": "react-app"
   },
