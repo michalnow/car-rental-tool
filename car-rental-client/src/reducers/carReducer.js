@@ -1,4 +1,4 @@
-import { GET_CARS, GET_CAR } from "../actions/types";
+import { GET_CARS, GET_CAR, DELETE_CAR } from "../actions/types";
 
 const initialState = {
   cars: [],
@@ -16,6 +16,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         car: action.payload
+      };
+    case DELETE_CAR:
+      return {
+        ...state,
+        cars: state.cars.filter(car => car.carIdentifier !== action.payload)
       };
     default:
       return state;
