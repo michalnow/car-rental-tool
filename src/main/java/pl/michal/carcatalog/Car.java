@@ -8,16 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.aspectj.weaver.ast.Not;
 
 @Entity
@@ -25,6 +19,7 @@ import org.aspectj.weaver.ast.Not;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Car {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -54,8 +49,11 @@ public class Car {
 	private String transmission;
 	
 	@NotNull(message="must provide milage of car")
+
+	@Min(value = 1, message = "millage must greater than 0")
 	private int milage;
 
+	@DecimalMin(value = "1.0", message = "rating must be greater than 0")
 	private double rating;
 
 	@NotNull(message = "must provide whether the car is rented now or not")
@@ -63,12 +61,15 @@ public class Car {
 	private String isRented;
 
 	@NotNull(message = "must provide number of seats")
+	@Min(value = 1, message = "must provide number of seats greater than 0")
 	private int noOfSeats;
 
 	@NotNull(message = "must provide capacity of trunk")
+	@Min(value = 1, message = "must provide capacity greater than 0")
 	private int trunk;
 
 	@NotNull(message = "must provide price per day")
+	@Min(value = 1, message = "Must provide price greater than 0")
 	private int pricePerDay;
 
 	@NotNull(message="must provide year of production")
@@ -79,57 +80,9 @@ public class Car {
 	private String image2;
 	private String image3;
 	
-	@JsonFormat(pattern = "yyyy-MM-DD")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(updatable = false)
 	private Date addDate;
-
-
-	public Car(
-			@NotBlank(message = "car name must be provided") String carName,
-			@NotBlank(message = "car model must be provided") String carModel,
-			@NotBlank(message = "must provide register number(8 characters)")
-			@Size(min = 8, max = 8) String carIdentifier,
-			@NotBlank(message = "provide enginge type") String engineType,
-			@NotBlank(message = "must provide  fuel type") String fuelType,
-			@NotBlank(message = "must provide type of drive") String typeOfDrive,
-			@NotBlank(message = "must proivde type of transmission") String transmission,
-			@NotNull(message = "must provide milage of car") int milage, double rating,
-			@NotNull(message = "must provide whether the car is rented now or not")
-			@Pattern(regexp = "^(?:yes|no)$") String isRented,
-			@NotNull(message = "must provide number of seats") int noOfSeats,
-			@NotNull(message = "must provide capacity of trunk") int trunk,
-			@NotNull(message = "must provide price per day") int pricePerDay,
-			@NotNull(message = "must provide year of production") Date yearOfProduction,
-			String image1,
-			String image2,
-			String image3,
-			Date addDate
-	) {
-		this.carName = carName;
-		this.carModel = carModel;
-		this.carIdentifier = carIdentifier;
-		this.engineType = engineType;
-		this.fuelType = fuelType;
-		this.typeOfDrive = typeOfDrive;
-		this.transmission = transmission;
-		this.milage = milage;
-		this.rating = rating;
-		this.isRented = isRented;
-		this.noOfSeats = noOfSeats;
-		this.trunk = trunk;
-		this.pricePerDay = pricePerDay;
-		this.yearOfProduction = yearOfProduction;
-		this.image1 = image1;
-		this.image2 = image2;
-		this.image3 = image3;
-		this.addDate = addDate;
-	}
-
-
-
-
-
-	public Car() {}
-
 
 	@PrePersist
 	protected void onCreate() {
