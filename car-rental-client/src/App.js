@@ -12,7 +12,7 @@ import AddCar from "./components/Car/AddCar";
 import CarDetails from "./components/Car/CarDetails";
 import CarPricing from "./components/Car/CarPricing";
 import CarOrder from "./components/Car/CarOrder";
-import StripeProvider from "./components/Stripe/StripeProvider";
+import PaymentProvider from "./components/Stripe/PaymentProvider";
 import { Provider } from "react-redux";
 import store from "./store";
 import UpdateCar from "./components/Car/UpdateCar";
@@ -46,7 +46,7 @@ class App extends Component {
             <Route
               exact
               path="/car/details/:carIdentifier/rent/payment/charge"
-              component={StripeProvider}
+              component={PaymentProvider}
             />
           </div>
         </Router>
